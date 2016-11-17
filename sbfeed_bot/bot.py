@@ -8,9 +8,11 @@ from sbfeed_bot import exceptions
 
 class SbFeedBot:
     NOTIFICATION_TMPL = """\
-{title} {link}
+{title}
 
-{text}\
+{text}
+
+{link}\
 """
 
     def __init__(self, token, model, feeder):
@@ -146,4 +148,5 @@ class SbFeedBot:
         text = self.NOTIFICATION_TMPL.format(
             title=item_title, link=item_link, text=item_text, slug=feed,
         )
-        self.dispatcher.bot.send_message(chat_id=chat_id, text=text)
+        self.dispatcher.bot.send_message(chat_id=chat_id, text=text,
+                                         disable_web_page_preview=True)
